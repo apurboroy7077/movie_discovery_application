@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Global from "@/components/global/Global";
 
 export const metadata: Metadata = {
   title: "Apurbo Roy",
@@ -13,6 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Global />
       <body className="bg-[#1B1D26] text-[white]">{children}</body>
     </html>
   );

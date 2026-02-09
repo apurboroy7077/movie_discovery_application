@@ -3,7 +3,7 @@ import React from "react";
 
 const MyNavbar = () => {
   return (
-    <header className=" absolute w-full top-0">
+    <header className="z-50 absolute w-full top-0">
       <div className=" max-w-[100vw] overflow-x-hidden bg-[black]/50 px-5 py-5 lg:py-10 ">
         <div className="flex justify-center items-center">
           <div className="w-full max-w-7xl">

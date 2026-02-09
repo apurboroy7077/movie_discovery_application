@@ -1,18 +1,23 @@
 import { TMDB_API_READ_ACCESS_TOKEN } from "@/data/environment_variables/Environment_Variables";
-import axios from "axios";
 
 export const GET = async (request: Request) => {
   try {
-    const response = await axios.get(
+    const response = await fetch(
       "https://api.themoviedb.org/3/movie/top_rated",
       {
-        timeout: 99999,
         headers: {
           Authorization: `Bearer ${TMDB_API_READ_ACCESS_TOKEN}`,
         },
       }
     );
-    const topRatedMovies = response.data.results;
+
+    if (!response.ok) {
+      throw new Error("TMDB request failed");
+    }
+
+    const data = await response.json();
+    const topRatedMovies = data.results;
+
     return Response.json(
       {
         message: "Top Rated Movies Successfully Fetched",
@@ -25,3 +30,4 @@ export const GET = async (request: Request) => {
     return Response.json({ message: "Error Happened" }, { status: 500 });
   }
 };
+// export const runtime = "edge";
