@@ -22,7 +22,7 @@ const HeroSection = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(numberOneRatedMovieData);
+
   return (
     <section>
       {numberOneRatedMovieData && (

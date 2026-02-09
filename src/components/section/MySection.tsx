@@ -19,7 +19,7 @@ const MySection = (props: propsType) => {
         }`}
       >
         <div className="flex justify-center items-center">
-          <div className="w-full max-w-screen-xl">
+          <div className="w-full max-w-[100rem]">
             <div>{children}</div>
           </div>
         </div>
