@@ -11,6 +11,8 @@ import React, { useEffect, useState } from "react";
 const DetailsPage = () => {
   const myParams = useParams();
   const [movieDetails, setMovieDetails] = useState<any>(null);
+  const [genreNameString, setGenreNameString] = useState("");
+  const [genreIdString, setGenreIdString] = useState("");
   const fetchData = () => {
     if (!myParams) {
       return;
@@ -25,15 +27,41 @@ const DetailsPage = () => {
         console.log(err);
       });
   };
+  const calculateAndSetGenreIdsAndName = () => {
+    const myGenres = movieDetails.genres;
+    let genreIdString = "";
+    let genreNameString = "";
+    for (let i = 0; i < myGenres.length; i++) {
+      const singleGenre = myGenres[i];
+      const { id, name } = singleGenre;
+      genreIdString = genreIdString + id;
+      genreNameString = genreNameString + name;
+      if (i !== myGenres.length - 1) {
+        genreIdString = genreIdString + ",";
+        genreNameString = genreNameString + ", ";
+      }
+    }
+    setGenreNameString(genreNameString);
+    setGenreIdString(genreIdString);
+  };
   useEffect(() => {
     fetchData();
   }, []);
+  useEffect(() => {
+    if (!movieDetails) {
+      return;
+    }
+    calculateAndSetGenreIdsAndName();
+  }, [movieDetails]);
   return (
     <>
       <MyNavbar />
       {movieDetails && <MovieDetailSection movieDetails={movieDetails} />}
 
-      <TopRatedMoviesByGenreSection genreId="27" genreName="Horror" />
+      <TopRatedMoviesByGenreSection
+        genreId={genreIdString}
+        genreName={genreNameString}
+      />
     </>
   );
 };
