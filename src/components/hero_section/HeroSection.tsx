@@ -1,6 +1,7 @@
 import { TMDB_IMAGE_URL } from "@/data/environment_variables/Environment_Variables";
 import useBasic from "@/hooks/useBasics";
 import axios from "axios";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const HeroSection = () => {
@@ -47,9 +48,11 @@ const HeroSection = () => {
                   {numberOneRatedMovieData.release_date}
                 </div>
                 <div className="mt-3 lg:mt-10">
-                  <button className="bg-[#1B2E4A] text-xs lg:text-lg px-3 lg:px-10 py-1 lg:py-2 rounded active:scale-[0.95]">
-                    View Details
-                  </button>
+                  <Link href={`/details/${numberOneRatedMovieData.id}`}>
+                    <button className="bg-[#1B2E4A] text-xs lg:text-lg px-3 lg:px-10 py-1 lg:py-2 rounded active:scale-[0.95]">
+                      View Details
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
