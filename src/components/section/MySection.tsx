@@ -14,8 +14,8 @@ const MySection = (props: propsType) => {
   return (
     <section className={sectionClassName} data-section-name={dataSectionName}>
       <div
-        className={`max-w-[100vw] overflow-x-hidden bg-transparent px-5  lg:py-32 ${extraClassName} ${
-          extraClassName?.includes("py-") ? "" : "py-20"
+        className={`max-w-[100vw] overflow-x-hidden bg-transparent px-5  lg:py-16 ${extraClassName} ${
+          extraClassName?.includes("py-") ? "" : "py-10"
         }`}
       >
         <div className="flex justify-center items-center">

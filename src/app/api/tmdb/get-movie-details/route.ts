@@ -2,10 +2,11 @@ import { TMDB_API_READ_ACCESS_TOKEN } from "@/data/environment_variables/Environ
 
 export const GET = async (request: Request) => {
   try {
+    console.log({ url: request });
     const { searchParams } = new URL(request.url);
-    const genreId = searchParams.get("genre_id");
+    const movieId = searchParams.get("movie_id");
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&sort_by=vote_average.desc`,
+      `https://api.themoviedb.org/3/movie/${movieId}`,
       {
         headers: {
           Authorization: `Bearer ${TMDB_API_READ_ACCESS_TOKEN}`,
@@ -18,12 +19,11 @@ export const GET = async (request: Request) => {
     }
 
     const data = await response.json();
-    const topRatedMovies = data.results;
 
     return Response.json(
       {
-        message: "Top Rated Movies Successfully Fetched",
-        data: topRatedMovies,
+        message: "Movie Details Successfully Fetched",
+        data: data,
       },
       { status: 200 }
     );
