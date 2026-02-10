@@ -2,7 +2,6 @@ import { TMDB_API_READ_ACCESS_TOKEN } from "@/data/environment_variables/Environ
 
 export const GET = async (request: Request) => {
   try {
-    console.log({ url: request });
     const { searchParams } = new URL(request.url);
     const movieId = searchParams.get("movie_id");
     const response = await fetch(
