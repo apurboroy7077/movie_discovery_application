@@ -4,13 +4,18 @@ import useBasic from "@/hooks/useBasics";
 import axios from "axios";
 import { TMDB_IMAGE_URL } from "@/data/environment_variables/Environment_Variables";
 import MovieLists from "../movie_lists/MovieLists";
+type PropsType = {
+  genreName: string;
+  genreId: string;
+};
 
-const TopRatedMoviesSection = () => {
+const TopRatedMoviesByGenreSection = (props: PropsType) => {
+  const { genreName, genreId } = props;
   const [topRatedMovies, setTopRatedMovies] = useState([] as any[]);
   const { screenSize } = useBasic();
   const fetchData = () => {
     axios
-      .get("/api/tmdb/get-top-rated-movie?genre_id=27")
+      .get(`/api/tmdb/get-top-rated-movie-by-genre?genre_id=${genreId}`)
       .then((res) => {
         const data = res.data.data;
         setTopRatedMovies(data);
@@ -25,7 +30,7 @@ const TopRatedMoviesSection = () => {
   return (
     <MySection>
       <div>
-        <div className="text-sm lg:text-2xl font-bold">Top Rated Movies</div>
+        <div className="text-sm lg:text-2xl font-bold">{genreName}</div>
       </div>
       <div className="mt-5">
         <MovieLists arrayOfMovies={topRatedMovies} />
@@ -34,4 +39,4 @@ const TopRatedMoviesSection = () => {
   );
 };
 
-export default TopRatedMoviesSection;
+export default TopRatedMoviesByGenreSection;

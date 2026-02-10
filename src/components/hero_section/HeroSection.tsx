@@ -22,7 +22,7 @@ const HeroSection = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  console.log(numberOneRatedMovieData);
   return (
     <section>
       {numberOneRatedMovieData && (
@@ -43,7 +43,7 @@ const HeroSection = () => {
                   {numberOneRatedMovieData.title}
                 </div>
                 <div className="text-xs lg:text-xl mt-1 lg:mt-3">
-                  Rating: 9.3 | Release Date:{" "}
+                  Rating: {numberOneRatedMovieData.vote_average} | Release Date:{" "}
                   {numberOneRatedMovieData.release_date}
                 </div>
                 <div className="mt-3 lg:mt-10">
