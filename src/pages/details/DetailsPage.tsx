@@ -60,7 +60,7 @@ const DetailsPage = () => {
 
       <TopRatedMoviesByGenreSection
         genreId={genreIdString}
-        genreName={genreNameString}
+        genreName={"Similar Movies"}
       />
     </>
   );
